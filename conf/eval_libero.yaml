@@ -1,0 +1,27 @@
+eval_cfg_overwrite:
+  datamodule:
+    datasets:
+      lang_dataset:
+        lang_folder: lang_annotations
+  model:
+    num_sampling_steps: 4
+
+task_embedding_format: clip
+log_dir: /home/hk-project-sustainebot/ft4740/code/flower_vla_calvin/logs/
+dataset_path: /home/hk-project-robolear/ft4740/code/calvin_d_old/dataset/task_D_D
+train_folder: /home/hk-project-sustainebot/ft4740/code/flower_vla_calvin/logs/best_checkpoints/calvin_abcd/.hydra/config.yaml
+checkpoint: /home/hk-project-sustainebot/ft4740/code/flower_vla_calvin/logs/best_checkpoints/calvin_abcd/seed_342/avg_seq_len=4.72.ckpt
+device: 0
+num_videos: 30
+debug: False
+
+log_wandb: True
+wandb_entity: bennoq
+
+num_sequences: 50
+max_steps: 520
+n_eval: 20
+num_sampling_steps: 4
+multistep: 10
+
+benchmark_name: libero_10 # [LIBERO_SPATIAL, LIBERO_OBJECT, LIBERO_GOAL, LIBERO_90, LIBERO_10]

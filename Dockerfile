@@ -1,0 +1,206 @@
+FROM cr.ai.cloud.ru/aicloud-base-images/cuda12.1-torch2-py39
+USER root
+
+RUN apt-get update \
+    && apt-get install -y git wget libgl1-mesa-glx libosmesa6-dev libglu1-mesa-dev
+
+WORKDIR /home/user
+
+RUN python3 -m pip install --upgrade pip setuptools==57.5.0
+RUN python3 -m pip install \
+    absl-py==2.3.0 \
+    aiohappyeyeballs==2.6.1 \
+    aiohttp==3.12.13 \
+    aiosignal==1.3.2 \
+    antlr4-python3-runtime==4.8 \
+    asttokens==3.0.0 \
+    async-timeout==5.0.1 \
+    attrs==25.3.0 \
+    bddl==1.0.1 \
+#     -e git+https://github.com/mees/calvin_env.git@797142c588c21e76717268b7b430958dbd13bf48#egg=calvin_env&subdirectory=../../calvin_env \
+    certifi==2025.6.15 \
+    charset-normalizer==3.4.2 \
+    click==8.1.8 \
+    cloudpickle==2.1.0 \
+    colorlog==6.9.0 \
+    comm==0.2.2 \
+    contourpy==1.3.0 \
+    cycler==0.12.1 \
+    debugpy==1.8.14 \
+    decorator==5.2.1 \
+    docker-pycreds==0.4.0 \
+    easydict==1.9 \
+    egl_probe==1.0.2 \
+    einops==0.4.1 \
+    einops-exts==0.0.4 \
+    etils==1.5.2 \
+    exceptiongroup==1.3.0 \
+    executing==2.2.0 \
+    fastjsonschema==2.21.1 \
+    filelock==3.18.0 \
+    fonttools==4.58.4 \
+    freetype-py==2.5.1 \
+    frozenlist==1.7.0 \
+    fsspec==2025.5.1 \
+    ftfy==6.3.1 \
+    future==0.18.2 \
+    gitdb==4.0.12 \
+    GitPython==3.1.44 \
+    glfw==2.9.0 \
+    grpcio==1.73.0 \
+    gym==0.25.2 \
+    gym-notices==0.0.8 \
+    h5py==3.14.0 \
+    hf-xet==1.1.4 \
+    huggingface-hub==0.33.0 \
+    hydra-colorlog==1.2.0 \
+    hydra-core==1.1.1 \
+    idna==3.10 \
+    imageio==2.37.0 \
+    imageio-ffmpeg==0.6.0 \
+    importlib_metadata==8.7.0 \
+    importlib_resources==6.5.2 \
+    iniconfig==2.1.0 \
+    ipykernel==6.29.5 \
+    ipython==8.18.1 \
+    ipywidgets==8.1.5 \
+    jedi==0.19.2 \
+    Jinja2==3.1.6 \
+    joblib==1.5.1 \
+    jsonschema==4.24.0 \
+    jsonschema-specifications==2025.4.1 \
+    jupyter_client==8.6.3 \
+    jupyter_core==5.8.1 \
+    jupyterlab_widgets==3.0.13 \
+    jupytext==1.17.2 \
+    kiwisolver==1.4.7 \
+#     -e git+https://github.com/Lifelong-Robot-Learning/LIBERO.git@8f1084e3132a39270c3a13ebe37270a43ece2a01#egg=libero&subdirectory=../../LIBERO \
+    lightning-utilities==0.14.3 \
+    llvmlite==0.43.0 \
+    lxml==5.4.0 \
+    Markdown==3.8 \
+    markdown-it-py==3.0.0 \
+    MarkupSafe==3.0.2 \
+    matplotlib==3.5.3 \
+    matplotlib-inline==0.1.7 \
+    mdit-py-plugins==0.4.2 \
+    mdurl==0.1.2 \
+    moviepy==2.2.1 \
+    mpmath==1.3.0 \
+    mujoco==3.3.3 \
+    multidict==6.5.0 \
+    narwhals==1.43.0 \
+    nbformat==5.10.4 \
+    nest-asyncio==1.6.0 \
+    networkx==2.2 \
+    numba==0.60.0 \
+    numpy==1.26.4 \
+    numpy-quaternion==2023.0.4 \
+    nvidia-cublas-cu12==12.4.5.8 \
+    nvidia-cuda-cupti-cu12==12.4.127 \
+    nvidia-cuda-nvrtc-cu12==12.4.127 \
+    nvidia-cuda-runtime-cu12==12.4.127 \
+    nvidia-cudnn-cu12==9.1.0.70 \
+    nvidia-cufft-cu12==11.2.1.3 \
+    nvidia-cufile-cu12==1.11.1.6 \
+    nvidia-curand-cu12==10.3.5.147 \
+    nvidia-cusolver-cu12==11.6.1.9 \
+    nvidia-cusparse-cu12==12.3.1.170 \
+    nvidia-cusparselt-cu12==0.6.2 \
+    nvidia-nccl-cu12==2.21.5 \
+    nvidia-nvjitlink-cu12==12.4.127 \
+    nvidia-nvtx-cu12==12.4.127 \
+    omegaconf==2.1.2 \
+    opencv-python==4.6.0.66 \
+    packaging==25.0 \
+    pandas==2.3.0 \
+    parso==0.8.4 \
+    pathtools==0.1.2 \
+    pexpect==4.9.0 \
+    pillow==11.2.1 \
+    platformdirs==4.3.8 \
+    plotly==6.1.2 \
+    pluggy==1.6.0 \
+    proglog==0.1.12 \
+    promise==2.3 \
+    prompt_toolkit==3.0.51 \
+    propcache==0.3.2 \
+    protobuf==3.20.3 \
+    psutil==7.0.0 \
+    ptyprocess==0.7.0 \
+    pure_eval==0.2.3 \
+    pybullet==3.2.7 \
+    pycollada==0.6 \
+    pyglet==2.1.6 \
+    Pygments==2.19.1 \
+    pyhash==0.9.3 \
+#     PyOpenGL @ git+https://github.com/mmatl/pyopengl.git@76d1261adee2d3fd99b418e75b0416bb7d2865e6 \
+    pyparsing==3.2.3 \
+    pyrender==0.1.45 \
+    pytest==8.4.1 \
+    python-dateutil==2.9.0.post0 \
+    python-dotenv==1.1.0 \
+    pytorch-lightning==2.0.8 \
+    pytz==2025.2 \
+    PyYAML==6.0.2 \
+    pyzmq==27.0.0 \
+    referencing==0.36.2 \
+    regex==2024.11.6 \
+    requests==2.32.4 \
+    robomimic==0.2.0 \
+    robosuite==1.4.0 \
+    rpds-py==0.25.1 \
+    safetensors==0.5.3 \
+    scikit-learn==1.6.1 \
+    scipy==1.13.1 \
+    sentence-transformers==4.1.0 \
+    sentry-sdk==2.30.0 \
+    setproctitle==1.3.6 \
+    shortuuid==1.0.13 \
+    six==1.17.0 \
+    smmap==5.0.2 \
+    stack-data==0.6.3 \
+    sympy==1.13.1 \
+#     -e git+https://github.com/lukashermann/tacto.git@dd53360d9a8c186f0d6439372ec0be0fa5e21731#egg=tacto&subdirectory=../../../../calvin_env/tacto \
+    tensorboard==2.19.0 \
+    tensorboard-data-server==0.7.2 \
+    tensorboardX==2.6.4 \
+    termcolor==3.1.0 \
+    thop==0.1.1.post2209072238 \
+    threadpoolctl==3.6.0 \
+    timm==1.0.15 \
+    tokenizers==0.21.1 \
+    tomli==2.2.1 \
+    torch==2.6.0 \
+    torchaudio==2.6.0 \
+    torchdiffeq==0.2.5 \
+    torchmetrics==1.7.3 \
+    torchsde==0.2.6 \
+    torchvision==0.21.0 \
+    tornado==6.5.1 \
+    tqdm==4.67.1 \
+    traitlets==5.14.3 \
+    trampoline==0.1.2 \
+    transformers==4.51.1 \
+    trimesh==4.6.12 \
+    triton==3.2.0 \
+    typing_extensions==4.14.0 \
+    tzdata==2025.2 \
+    urdfpy==0.0.22 \
+    urllib3==2.4.0 \
+    wandb==0.13.1 \
+    wcwidth==0.2.13 \
+    Werkzeug==3.1.3 \
+    widgetsnbextension==4.0.13 \
+    yarl==1.20.1 \
+    zipp==3.23.0
+
+RUN python3 -m pip install -e git+https://github.com/mees/calvin_env.git@797142c588c21e76717268b7b430958dbd13bf48#egg=calvin_env \
+    git+https://github.com/Lifelong-Robot-Learning/LIBERO.git@8f1084e3132a39270c3a13ebe37270a43ece2a01#egg=libero \
+    git+https://github.com/mmatl/pyopengl.git@76d1261adee2d3fd99b418e75b0416bb7d2865e6 \
+    git+https://github.com/lukashermann/tacto.git@dd53360d9a8c186f0d6439372ec0be0fa5e21731#egg=tacto
+
+RUN git clone --recurse-submodules https://github.com/intuitive-robots/flower_vla_calvin.git; cd flower_vla_calvin; cd calvin_env/tacto; python3 -m pip install -e .; cd ..; python3 -m pip install -e .; cd ..; cd LIBERO; python3 -m pip install -e .; cd ..; python3 -m pip install numpy==1.26.4
+
+
+USER user

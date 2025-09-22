@@ -1,0 +1,29 @@
+defaults:
+  - annotations: new_playtable_validation
+  - callbacks/rollout_lh/tasks@tasks: new_playtable_tasks
+
+eval_cfg_overwrite:
+  datamodule:
+    datasets:
+      lang_dataset:
+        lang_folder: lang_annotations
+  model:
+    num_sampling_steps: ${num_sampling_steps}
+
+train_folder: /home/hk-project-sustainebot/ft4740/code/flower_vla_calvin/logs/best_checkpoints/calvin_abcd/.hydra/config.yaml
+checkpoint: /home/hk-project-sustainebot/ft4740/code/flower_vla_calvin/logs/best_checkpoints/calvin_abcd/seed_342/avg_seq_len=4.72.ckpt
+device: 0
+
+
+log_dir: /home/hk-project-sustainebot/ft4740/code/flower_vla_calvin/logs/
+dataset_path: /home/hk-project-robolear/ft4740/code/calvin_d_old/dataset/task_D_D
+num_videos: 30
+debug: False
+
+log_wandb: True
+wandb_entity: bennoq
+
+num_sequences: 100
+ep_len: 360
+num_sampling_steps: 4
+multistep: 10

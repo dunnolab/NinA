@@ -1,0 +1,67 @@
+# FLOWERVLA Configuration
+_target_: flower.models.flower.FLOWERVLA
+_recursive_: false
+
+# VLM Configuration
+vlm_path: microsoft/Florence-2-large
+freeze_florence: ${freeze_florence}
+freeze_vision_tower: False
+vlm_prompt_style: default
+token_dropout: 0.1  # Added token dropout parameter
+
+# Model Structure
+multistep: ${multistep}
+num_sampling_steps: 4
+lowdim_obs_dim: 7
+action_dim: 7
+act_window_size: 10
+
+# pretraining stuff
+load_pretrained: ${load_pretrained}
+pretrained_model_path: /home/jovyan/.cache/huggingface/hub/models--mbreuss--flower_vla_pret/snapshots/75e6ea3b71f95404e5a1e4fc0eac36a687809bff/360000_model_weights.pt
+# /home/hk-project-sustainebot/ft4740/code/flower_vla/logs/runs/2025-02-19/11-15-41/200000_model_weights.pt
+# /home/hk-project-sustainebot/ft4740/code/flower_vla_policy/logs/runs/2025-02-05/10-17-02/360000_model_weights.pt joint + delta pret
+# Model flags
+use_second_view: True
+second_view_key: image_wrist
+action_type_adaln: True
+use_causal_attention: true
+use_cross_attn: True
+use_adaln_cond: false
+use_readout_token: false
+use_proprio: false
+return_act_chunk: false
+
+# DiT Configuration
+sampling_type: uniform
+dit_dim: ${dit_dim}
+n_heads: ${n_heads}
+n_layers: ${n_layers}
+attn_pdrop: 0.1
+resid_pdrop: 0.1
+mlp_pdrop: 0.1
+
+# RoPE Configuration
+use_rope: true
+use_nope: false
+query_seq_len: 100
+rope_theta: 32.0
+
+# Optimizer Configuration
+optimizer_type: adamw
+
+optimizer:
+  _target_: torch.optim.AdamW
+  transformer_weight_decay: 0.05
+  learning_rate: 2e-5
+  betas: [0.9, 0.95]
+
+# Learning Rate Scheduler
+lr_scheduler:
+  lr_scheduler:
+    init_lr: 2e-5
+    init_lr_scale: 0.1
+    final_lr_scale: 0.5
+    total_steps: 50000
+    phase_ratio: "(0.05, 0.1, 0.85)"
+    lr: 2e-5
